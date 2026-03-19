@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import ru.Yaroslav.NauJava.dateBase.entity.*;
 import ru.Yaroslav.NauJava.dateBase.repository.*;
 import ru.Yaroslav.NauJava.dateBase.service.UserService;
@@ -11,6 +12,7 @@ import ru.Yaroslav.NauJava.dateBase.service.UserService;
 import java.time.LocalDate;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class UserServiceTest {
 
     @Autowired
