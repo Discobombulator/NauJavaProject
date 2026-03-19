@@ -10,7 +10,7 @@ import java.util.UUID;
 
 
 @Component
-public class UserRepository implements CrudRepository<Dish, Long>
+public class DishRepository implements CrudRepository<Dish, Long>
 {
     private final List<Dish> dishContainer;
 
@@ -21,7 +21,7 @@ public class UserRepository implements CrudRepository<Dish, Long>
         return Math.abs(mostSignificantBits);
     }
     @Autowired
-    public UserRepository(List<Dish> dishList)
+    public DishRepository(List<Dish> dishList)
     {
         this.dishContainer = dishList;
     }

@@ -1,7 +1,7 @@
 package ru.Yaroslav.NauJava.logic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.Yaroslav.NauJava.UserRepository;
+import ru.Yaroslav.NauJava.DishRepository;
 import ru.Yaroslav.NauJava.data.Dish;
 
 import java.util.List;
@@ -9,11 +9,11 @@ import java.util.List;
 @Service
 public class ServiceLogic implements DishService
 {
-    private final UserRepository userRepository;
+    private final DishRepository dishRepository;
     @Autowired
-    public ServiceLogic(UserRepository userRepository)
+    public ServiceLogic(DishRepository dishRepository)
     {
-        this.userRepository = userRepository;
+        this.dishRepository = dishRepository;
     }
     @Override
     public void createDish(String name,Double weight,Integer kilocalories,
@@ -26,17 +26,17 @@ public class ServiceLogic implements DishService
         newDish.setProtein(protein);
         newDish.setFat(fat);
         newDish.setCarbohydrates(carbohydrates);
-        userRepository.create(newDish);
+        dishRepository.create(newDish);
     }
     @Override
     public Dish findById(Long id)
     {
-        return userRepository.read(id);
+        return dishRepository.read(id);
     }
     @Override
     public void deleteById(Long id)
     {
-        userRepository.delete(id);
+        dishRepository.delete(id);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ServiceLogic implements DishService
         Dish dish = new Dish();
         dish.setId(id);
         dish.setWeight(newWeight);
-        userRepository.update(dish);
+        dishRepository.update(dish);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ServiceLogic implements DishService
         Dish dish = new Dish();
         dish.setId(id);
         dish.setKilocalories(newKilocalories);
-        userRepository.update(dish);
+        dishRepository.update(dish);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class ServiceLogic implements DishService
         Dish dish = new Dish();
         dish.setId(id);
         dish.setProtein(newProtein);
-        userRepository.update(dish);
+        dishRepository.update(dish);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ServiceLogic implements DishService
         Dish dish = new Dish();
         dish.setId(id);
         dish.setFat(newFat);
-        userRepository.update(dish);
+        dishRepository.update(dish);
     }
 
     @Override
@@ -77,11 +77,11 @@ public class ServiceLogic implements DishService
         Dish dish = new Dish();
         dish.setId(id);
         dish.setCarbohydrates(newCarbohydrates);
-        userRepository.update(dish);
+        dishRepository.update(dish);
     }
     @Override
     public List<Dish> findAllDishes() {
-        return userRepository.findAll();
+        return dishRepository.findAll();
     }
 }
 
