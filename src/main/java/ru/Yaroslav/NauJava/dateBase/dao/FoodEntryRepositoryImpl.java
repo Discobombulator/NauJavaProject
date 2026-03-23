@@ -10,12 +10,16 @@ import ru.Yaroslav.NauJava.dateBase.entity.User;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Реализация кастомного репозитория записей о питании
+ */
 @Repository
 public class FoodEntryRepositoryImpl implements FoodEntryRepositoryCustom {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    /** Находит записи за период между датами */
     @Override
     public List<FoodEntry> findByDateBetween(LocalDate start, LocalDate end) {
 
@@ -31,6 +35,7 @@ public class FoodEntryRepositoryImpl implements FoodEntryRepositoryCustom {
         return entityManager.createQuery(cq).getResultList();
     }
 
+    /** Находит записи по имени пользователя */
     @Override
     public List<FoodEntry> findByUserName(String userName) {
 

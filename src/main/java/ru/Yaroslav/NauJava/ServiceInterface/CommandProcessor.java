@@ -8,16 +8,23 @@ import ru.Yaroslav.NauJava.logic.DishService;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Обработчик консольных команд
+ */
 @Component
 public class CommandProcessor
 {
     private final DishService dishService;
     private final Scanner scanner = new Scanner(System.in);
+
+    /** Конструктор */
     @Autowired
     public CommandProcessor(DishService dishService)
     {
         this.dishService = dishService;
     }
+
+    /** Обрабатывает введенную команду */
     public void processCommand(String input)
     {
         String[] cmd = input.split(" ");

@@ -6,15 +6,21 @@ import ru.Yaroslav.NauJava.data.Dish;
 
 import java.util.List;
 
+/**
+ * Обработчик консольных команд
+ */
 @Service
 public class ServiceLogic implements DishService
 {
     private final DishRepository dishRepository;
+    /** Конструктор */
     @Autowired
     public ServiceLogic(DishRepository dishRepository)
     {
         this.dishRepository = dishRepository;
     }
+
+    /** Обрабатывает введенную команду */
     @Override
     public void createDish(String name,Double weight,Integer kilocalories,
                            Integer protein,Integer fat,Integer carbohydrates)

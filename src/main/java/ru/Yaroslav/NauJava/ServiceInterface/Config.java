@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import jakarta.annotation.PostConstruct;
 
+/**
+ * Конфигурационный класс приложения
+ */
 @Configuration
 public class Config
 {
@@ -20,11 +23,13 @@ public class Config
     @Autowired
     private CommandProcessor commandProcessor;
 
+    /** Выводит информацию о приложении при инициализации */
     @PostConstruct
     public void init() {
         System.out.println("  " + appName + " v" + appVersion);
     }
 
+    /** Создает bean для обработки консольных команд */
     @Bean
     public CommandLineRunner commandScanner()
     {

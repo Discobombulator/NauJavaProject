@@ -13,6 +13,9 @@ import ru.Yaroslav.NauJava.dateBase.repository.UserRepository;
 
 import java.util.List;
 
+/**
+ * Реализация сервиса для работы с пользователями
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -20,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private final FoodEntryRepository foodEntryRepository;
     private final PlatformTransactionManager transactionManager;
 
+    /** Конструктор с внедрением зависимостей */
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            FoodEntryRepository foodEntryRepository,
@@ -29,6 +33,7 @@ public class UserServiceImpl implements UserService {
         this.transactionManager = transactionManager;
     }
 
+    /** Удаляет пользователя и все его записи о питании в рамках транзакции */
     @Override
     public void deleteUserWithEntries(Long userId) {
 
@@ -36,24 +41,19 @@ public class UserServiceImpl implements UserService {
                 transactionManager.getTransaction(new DefaultTransactionDefinition());
 
         try {
-            // 1. найти пользователя
             User user = userRepository.findById(userId)
                     .orElseThrow(() -> new RuntimeException("User not found"));
 
-            // 2. удалить все FoodEntry
             List<FoodEntry> entries = user.getFoodEntries();
             for (FoodEntry entry : entries) {
                 foodEntryRepository.delete(entry);
             }
 
-            // 3. удалить пользователя
             userRepository.delete(user);
 
-            // 4. commit
             transactionManager.commit(status);
 
         } catch (DataAccessException ex) {
-            // rollback при ошибке
             transactionManager.rollback(status);
             throw ex;
         }
