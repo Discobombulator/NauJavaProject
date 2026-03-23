@@ -9,9 +9,13 @@ import ru.Yaroslav.NauJava.data.Dish;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Конфигурация бина списка блюд
+ */
 @Configuration
 public class DishList {
 
+    /** Создает singleton-бин списка блюд */
     @Bean
     @Scope(value = BeanDefinition.SCOPE_SINGLETON)
     public List<Dish> createDishList(){
