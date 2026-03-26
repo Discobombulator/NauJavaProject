@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Food List</title>
+</head>
+<body>
+
+<h1>Food List</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Calories</th>
+    </tr>
+
+    <tr th:each="food : ${foods}">
+        <td th:text="${food.id}"></td>
+        <td th:text="${food.name}"></td>
+        <td th:text="${food.calories}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

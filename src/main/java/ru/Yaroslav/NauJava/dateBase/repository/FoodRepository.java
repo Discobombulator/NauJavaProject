@@ -1,6 +1,7 @@
 package ru.Yaroslav.NauJava.dateBase.repository;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import ru.Yaroslav.NauJava.dateBase.entity.Food;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 /**
  * Репозиторий для работы с продуктами питания
  */
+@RepositoryRestResource(path = "foods")
 public interface FoodRepository extends CrudRepository<Food, Long> {
 
     /** Находит продукты по названию и калорийности на 100г */
