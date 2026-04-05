@@ -1,6 +1,8 @@
 package ru.Yaroslav.NauJava.dateBase.entity;
 
 import jakarta.persistence.*;
+import ru.Yaroslav.NauJava.security.Role;
+
 import java.util.List;
 
 /**
@@ -22,6 +24,9 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FoodEntry> foodEntries;
@@ -53,4 +58,14 @@ public class User {
     public List<FoodEntry> getFoodEntries() { return foodEntries; }
     /** Устанавливает записи о приеме пищи */
     public void setFoodEntries(List<FoodEntry> foodEntries) { this.foodEntries = foodEntries; }
+
+    /** Возвращает роль пользователя */
+    public Role getRole() {
+        return role;
+    }
+
+    /** Устанавливает роль пользователю */
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
